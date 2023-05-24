@@ -13,7 +13,8 @@
                 "https://*/*"
             ],
             "js": [
-                "contentScript.js"
+                "contentScript.js",
+                "Readability.js"
             ]
         }
     ],

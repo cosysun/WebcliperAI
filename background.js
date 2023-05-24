@@ -10,7 +10,7 @@ chrome.runtime.onMessage.addListener(async (msg, sender) => {
   if (msg.action == "content_click") {
   chrome.tabs.sendMessage(msg.data, {action: 'get_content'}, (response) => {
     // chrome.storage.local.set({pageContent: response.content});
-    chrome.runtime.sendMessage({content: response.content, action: "set_content"})
+    chrome.runtime.sendMessage({content: response.content, lang: response.lang, action: "set_content"})
   });
   }
 });
