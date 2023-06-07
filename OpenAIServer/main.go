@@ -36,7 +36,7 @@ func Summary(c *gin.Context) {
 			Messages: []openai.ChatCompletionMessage{
 				{
 					Role:    openai.ChatMessageRoleUser,
-					Content: req.Content,
+					Content: "请总结以下文本:" + req.Content,
 				},
 			},
 		},
@@ -44,7 +44,9 @@ func Summary(c *gin.Context) {
 
 	if err != nil {
 		fmt.Printf("ChatCompletion error: %v\n", err)
+		c.IndentedJSON(err.(*openai.APIError).HTTPStatusCode, nil)
 		return
 	}
+	fmt.Println(rsp.Choices[0].Message.Content)
 	c.IndentedJSON(http.StatusOK, &SummaryRsp{Content: rsp.Choices[0].Message.Content})
 }
