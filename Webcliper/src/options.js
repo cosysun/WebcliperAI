@@ -34,6 +34,7 @@ window.addEventListener('load', () => {
   submit.addEventListener('click', (event) => {
     event.preventDefault();
     const apiKey = content.value;
+    console.log(apiKey)
     chrome.storage.local.set({ apiKey }, () => {
       const status = document.getElementById('status');
       status.innerHTML = 'API key saved. The extension is ready to use.';
